@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Wed Jun 19 12:39:22 2019 by ROOT version 6.17/01
-// from TTree tree/lab setup entangled sim
-// found on file: nylonScattEntangled4Trill.root
+// Thu Jun 20 18:13:24 2019 by ROOT version 6.16/00
+// from TTree tree/capilary entangled sim
+// found on file: 500BillCapillary2Phi.root
 //////////////////////////////////////////////////////////
 
 #ifndef addRandoms_h
@@ -23,49 +23,37 @@ public :
 
    // Declaration of leaf types
    Float_t         annihil_N;
+   Float_t         scat1;
    Float_t         theta1;
    Float_t         phi1;
-   Float_t         E1_a;
    Float_t         X1_a;
    Float_t         Y1_a;
    Float_t         Z1_a;
-   Float_t         E1_b;
-   Float_t         X1_b;
-   Float_t         Y1_b;
-   Float_t         Z1_b;
+   Float_t         E1;
+   Float_t         scat2;
    Float_t         theta2;
    Float_t         phi2;
-   Float_t         E2_a;
    Float_t         X2_a;
    Float_t         Y2_a;
    Float_t         Z2_a;
-   Float_t         E2_b;
-   Float_t         X2_b;
-   Float_t         Y2_b;
-   Float_t         Z2_b;
+   Float_t         E2;
 
    // List of branches
    TBranch        *b_annihil_N;   //!
+   TBranch        *b_scat1;   //!
    TBranch        *b_theta1;   //!
    TBranch        *b_phi1;   //!
-   TBranch        *b_E1_a;   //!
    TBranch        *b_X1_a;   //!
    TBranch        *b_Y1_a;   //!
    TBranch        *b_Z1_a;   //!
-   TBranch        *b_E1_b;   //!
-   TBranch        *b_X1_b;   //!
-   TBranch        *b_Y1_b;   //!
-   TBranch        *b_Z1_b;   //!
+   TBranch        *b_E1;   //!
+   TBranch        *b_scat2;   //!
    TBranch        *b_theta2;   //!
    TBranch        *b_phi2;   //!
-   TBranch        *b_E2_a;   //!
    TBranch        *b_X2_a;   //!
    TBranch        *b_Y2_a;   //!
    TBranch        *b_Z2_a;   //!
-   TBranch        *b_E2_b;   //!
-   TBranch        *b_X2_b;   //!
-   TBranch        *b_Y2_b;   //!
-   TBranch        *b_Z2_b;   //!
+   TBranch        *b_E2;   //!
 
    addRandoms(TTree *tree=0);
    virtual ~addRandoms();
@@ -73,7 +61,7 @@ public :
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     Loop();
+   virtual void     Loop(Long64_t toProcess=0);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };
@@ -86,9 +74,9 @@ addRandoms::addRandoms(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("nylonScattEntangled4Trill.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("500BillCapillary2Phi.root");
       if (!f || !f->IsOpen()) {
-         f = new TFile("nylonScattEntangled4Trill.root");
+         f = new TFile("500BillCapillary2Phi.root");
       }
       f->GetObject("tree",tree);
 
@@ -138,26 +126,20 @@ void addRandoms::Init(TTree *tree)
    fChain->SetMakeClass(1);
 
    fChain->SetBranchAddress("annihil_N", &annihil_N, &b_annihil_N);
+   fChain->SetBranchAddress("scat1", &scat1, &b_scat1);
    fChain->SetBranchAddress("theta1", &theta1, &b_theta1);
    fChain->SetBranchAddress("phi1", &phi1, &b_phi1);
-   fChain->SetBranchAddress("E1_a", &E1_a, &b_E1_a);
    fChain->SetBranchAddress("X1_a", &X1_a, &b_X1_a);
    fChain->SetBranchAddress("Y1_a", &Y1_a, &b_Y1_a);
    fChain->SetBranchAddress("Z1_a", &Z1_a, &b_Z1_a);
-   fChain->SetBranchAddress("E1_b", &E1_b, &b_E1_b);
-   fChain->SetBranchAddress("X1_b", &X1_b, &b_X1_b);
-   fChain->SetBranchAddress("Y1_b", &Y1_b, &b_Y1_b);
-   fChain->SetBranchAddress("Z1_b", &Z1_b, &b_Z1_b);
+   fChain->SetBranchAddress("E1", &E1, &b_E1);
+   fChain->SetBranchAddress("scat2", &scat2, &b_scat2);
    fChain->SetBranchAddress("theta2", &theta2, &b_theta2);
    fChain->SetBranchAddress("phi2", &phi2, &b_phi2);
-   fChain->SetBranchAddress("E2_a", &E2_a, &b_E2_a);
    fChain->SetBranchAddress("X2_a", &X2_a, &b_X2_a);
    fChain->SetBranchAddress("Y2_a", &Y2_a, &b_Y2_a);
    fChain->SetBranchAddress("Z2_a", &Z2_a, &b_Z2_a);
-   fChain->SetBranchAddress("E2_b", &E2_b, &b_E2_b);
-   fChain->SetBranchAddress("X2_b", &X2_b, &b_X2_b);
-   fChain->SetBranchAddress("Y2_b", &Y2_b, &b_Y2_b);
-   fChain->SetBranchAddress("Z2_b", &Z2_b, &b_Z2_b);
+   fChain->SetBranchAddress("E2", &E2, &b_E2);
    Notify();
 }
 
