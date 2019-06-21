@@ -74,9 +74,9 @@ addRandoms::addRandoms(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("500BillCapillary2Phi.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/shared/storage/physhad/Medical/jb536/simulations/capillaryimage/500BillCapillary2Phi.root");
       if (!f || !f->IsOpen()) {
-         f = new TFile("500BillCapillary2Phi.root");
+         f = new TFile("/shared/storage/physhad/Medical/jb536/simulations/capillaryimage/500BillCapillary2Phi.root");
       }
       f->GetObject("tree",tree);
 

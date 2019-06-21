@@ -122,7 +122,7 @@ void addRandoms::Loop(Long64_t toProcess=0)
             gammaData[nGammas][5]=E2;
             nGammas++;
          }
-         if(detectArray[decay]==1) {
+         if(nGammas>1 && detectArray[decay]==1) {
             jentry++;
             if(jentry!=0 && jentry%1000000==0) std::cout << jentry << " entries processed" << std::endl;
             nbytes=0;
